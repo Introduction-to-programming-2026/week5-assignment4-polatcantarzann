@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xssVsStF)
 # 🧠 Memory in C – Lab Exercises
 
 Welcome to the **Memory Lab**! In this lab you will practice working with pointers, memory addresses, string copying, swapping values, and file I/O in C.
