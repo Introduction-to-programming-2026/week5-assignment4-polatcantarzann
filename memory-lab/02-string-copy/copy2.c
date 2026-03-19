@@ -1,34 +1,43 @@
-// Capitalizes a copy of a string — the RIGHT way
-//
-// To make a true copy we must:
-//   1. Allocate new memory with malloc
-//   2. Copy the characters one by one into that new memory
-
-#include <cs50.h>
 #include <ctype.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // Required for malloc and free
 #include <string.h>
 
 int main(void)
 {
-    // Get a string
-    char *s = get_string("s: ");
+    // Reserve space for the input string
+    char s[50];
+    printf("s: ");
+    scanf("%s", s);
 
     // TODO: Allocate memory for t — same length as s, plus 1 for the '\0'
-    char *t = malloc(/* ??? */);
+    // We request a new block of memory from the heap
+    char *t = malloc(strlen(s) + 1);
 
-    // TODO: Copy each character from s into t, including the '\0'
-    // Hint: loop from i = 0 to i <= strlen(s)
-    for (int i = 0; i <= strlen(s); i++)
+    // Safety check: Ensure malloc didn't return NULL (out of memory)
+    if (t == NULL)
     {
-        t[i] = /* ??? */;
+        return 1;
+    }
+
+    // TODO: Copy each character from s into t, including the null terminator '\0'
+    for (int i = 0, n = strlen(s); i <= n; i++)
+    {
+        t[i] = s[i];
     }
 
     // TODO: Capitalize the first letter of t only
-    t[0] = toupper(/* ??? */);
+    if (strlen(t) > 0)
+    {
+        t[0] = toupper(t[0]);
+    }
 
     // Print both — now only t should be capitalized
     printf("s: %s\n", s);
     printf("t: %s\n", t);
+
+    // IMPORTANT: Free the allocated memory to prevent memory leaks
+    free(t);
+
+    return 0;
 }

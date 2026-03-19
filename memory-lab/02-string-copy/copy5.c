@@ -1,13 +1,3 @@
-// Capitalizes a copy of a string — the SAFE way
-//
-// This is the production-quality version:
-//   - Check if get_string returned NULL
-//   - Check if malloc returned NULL
-//   - Use strcpy instead of a manual loop
-//   - Check length before capitalizing
-//   - Free allocated memory when done
-
-#include <cs50.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,11 +5,20 @@
 
 int main(void)
 {
-    // Get a string
-    char *s = get_string("s: ");
+    // Reserve space for input
+    char input[100];
+    printf("s: ");
+    
+    // Safety check for input reading
+    if (scanf("%99s", input) != 1)
+    {
+        return 1;
+    }
 
-    // TODO: Check if s is NULL and return 1 if so
-    if (/* ??? */)
+    char *s = input;
+
+    // TODO: Check if s is NULL (In standard C, we check if input was successful)
+    if (s == NULL)
     {
         return 1;
     }
@@ -27,27 +26,27 @@ int main(void)
     // TODO: Allocate memory for t
     char *t = malloc(strlen(s) + 1);
 
-    // TODO: Check if t is NULL and return 1 if so
-    if (/* ??? */)
+    // TODO: Check if t is NULL and return 1 if so (Memory safety)
+    if (t == NULL)
     {
         return 1;
     }
 
-    // TODO: Copy s into t using strcpy
-    strcpy(/* ??? */, /* ??? */);
+    // TODO: Copy s into t using strcpy (The professional way)
+    strcpy(t, s);
 
     // TODO: Capitalize t[0] only if the string is not empty
     if (strlen(t) > 0)
     {
-        t[0] = toupper(/* ??? */);
+        t[0] = toupper(t[0]);
     }
 
     // Print both strings
     printf("s: %s\n", s);
     printf("t: %s\n", t);
 
-    // TODO: Free the memory you allocated
-    /* ??? */
+    // TODO: Free the memory you allocated to prevent memory leaks
+    free(t);
 
     return 0;
 }
